@@ -20,6 +20,19 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MovementDistance;
+	
+	UPROPERTY()
+	FVector PreviousStartLocation;
+	
+	UPROPERTY()
+	FVector CurrentGoalLocation;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float ToleranceThreshold;
+	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* PlatformMesh;
+	
 
 protected:
 	// Called when the game starts or when spawned
