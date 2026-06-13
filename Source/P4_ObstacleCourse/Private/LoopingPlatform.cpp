@@ -14,7 +14,7 @@ ALoopingPlatform::ALoopingPlatform()
 	ToleranceThreshold = MovementSpeed/10;
 	GoalIndex = 0;
 	MaxWaypoints = 4;
-	
+	SetSpeed = true;
 	
 	RootComponent = CreateDefaultSubobject<USceneComponent>
 	(TEXT("Root Component"));
@@ -35,10 +35,10 @@ void ALoopingPlatform::BeginPlay()
 void ALoopingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (SetSpeed == 0)
+	if (SetSpeed == true)
 	{
-		SetSpeed = 1;
-		AveragedSpeed = FVector::Distance(Waypoints[GoalIndex], GetActorLocation()) / MovementSpeed;
+		SetSpeed = false;
+		AveragedSpeed = FVector::Distance(Waypoints[GoalIndex], GetActorLocation()) * MovementSpeed;
 	}
 	FVector Direction = Waypoints[GoalIndex] - GetActorLocation();
 	Direction.Normalize();
@@ -48,7 +48,7 @@ void ALoopingPlatform::Tick(float DeltaTime)
 	if (FVector::Distance(Waypoints[GoalIndex], NewLocation) <= ToleranceThreshold)
 	{
 		NewLocation = Waypoints[GoalIndex];
-		SetSpeed = 0;
+		SetSpeed = true;
 		GoalIndex += 1;
 		if (GoalIndex == MaxWaypoints)
 		{
@@ -56,6 +56,5 @@ void ALoopingPlatform::Tick(float DeltaTime)
 		}
 	}
 	SetActorLocation(NewLocation);
-
 }
 

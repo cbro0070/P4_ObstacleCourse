@@ -14,6 +14,23 @@ class P4_OBSTACLECOURSE_API AReversePlatform : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AReversePlatform();
+	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* PlatformMesh;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MovementSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float ToleranceThreshold;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FVector>Waypoints;
+	
+	int32 GoalIndex;
+	float AveragedSpeed;
+	FVector FullDistance;
+	int MaxWaypoints;
+	bool SetSpeed;
+	bool InReverse;
 
 protected:
 	// Called when the game starts or when spawned

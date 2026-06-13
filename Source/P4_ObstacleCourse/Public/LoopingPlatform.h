@@ -29,7 +29,7 @@ public:
 	float AveragedSpeed;
 	FVector FullDistance;
 	int MaxWaypoints;
-	int SetSpeed;
+	bool SetSpeed;
 
 protected:
 	// Called when the game starts or when spawned
