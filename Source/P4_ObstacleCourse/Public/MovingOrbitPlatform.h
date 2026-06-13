@@ -5,22 +5,29 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/Character.h"
-#include "SecurityCamera.generated.h"
+#include "MovingOrbitPlatform.generated.h"
 
 UCLASS()
-class P4_OBSTACLECOURSE_API ASecurityCamera : public AActor
+class P4_OBSTACLECOURSE_API AMovingOrbitPlatform : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ASecurityCamera();
+	AMovingOrbitPlatform();
 	
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* CameraMesh;
+	UStaticMeshComponent* PlatformMesh;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	ACharacter* TargetCharacter;
+	float OrbitSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float OrbitDistance;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float CurrentOrbitAngle;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* TargetActor;
 
 protected:
 	// Called when the game starts or when spawned
